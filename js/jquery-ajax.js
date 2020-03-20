@@ -40,10 +40,19 @@
   // Check out the dog.ceo API here: https://dog.ceo/dog-api/
   //
   // 1) Add a click event to the "Generate Doggo" button
+  $('#generateDoggoBtn').click(clickDoggoBtn)
+
   //
   // 2) In your event handler, make an AJAX request to https://dog.ceo/api/breeds/image/random
   //    which will return JSON data.
   //    Hint: there is a very convenient jQuery method for getting JSON data
+  function clickDoggoBtn () {
+    $.getJSON('https://dog.ceo/api/breeds/image/random', function(data) {
+      $(`<img src=${data.message}>`).appendTo($("#doggoContainer"))
+    })
+    $("#generateDoggoBtn").attr("disabled", "disabled")
+    .text("Generating Doggo...")
+  }
   //
   // 3) Look at the Network tab in Chrome Dev Tools and confirm that an HTTP request
   //    is being sent every time you click the "Generate Doggo" button.
