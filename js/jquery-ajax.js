@@ -48,11 +48,14 @@
   //    Hint: there is a very convenient jQuery method for getting JSON data
   function clickDoggoBtn () {
     $.getJSON('https://dog.ceo/api/breeds/image/random', function(data) {
-      $(`<img src=${data.message}>`).appendTo($("#doggoContainer"))
+      $("#doggoContainer").html(`<img src=${data.message}>`)
+      $("#generateDoggoBtn").removeAttr("disabled")
+      .text("Generate Doggo")
     })
     $("#generateDoggoBtn").attr("disabled", "disabled")
     .text("Generating Doggo...")
   }
+
   //
   // 3) Look at the Network tab in Chrome Dev Tools and confirm that an HTTP request
   //    is being sent every time you click the "Generate Doggo" button.
